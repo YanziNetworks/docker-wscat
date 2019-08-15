@@ -1,6 +1,6 @@
-# websocket cat
+# websockets cat
 
-This is a Docker image for [wscat], the websocket cat. Use it as in the example
+This is a Docker image for [wscat], the websockets cat. Use it as in the example
 below:
 
 ```shell
