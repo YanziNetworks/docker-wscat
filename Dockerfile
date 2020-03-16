@@ -1,14 +1,8 @@
-FROM node:12.8.0-slim
+FROM node:13.10.1-alpine3.11
 LABEL maintainer="efrecon@gmail.com"
 
-ARG VERSION=2.2.1
+ARG VERSION=4.0.0
 ARG BUILD_DATE
-LABEL org.label-schema.build-date=${BUILD_DATE}
-LABEL org.label-schema.schema-version="1.0"
-LABEL org.label-schema.name="yanzinetworks/wscat"
-LABEL org.label-schema.description="WebSocket cat"
-LABEL org.label-schema.url="https://github.com/websockets/wscat"
-LABEL org.label-schema.docker.cmd="docker run --rm -it --net=host yanzinetworks/wscat"
 
 # Create user
 ENV USER=wscat
@@ -26,3 +20,15 @@ RUN npm install -g wscat@${VERSION}
 
 USER ${USER}
 ENTRYPOINT [ "wscat" ]
+
+# OCI Annotation: https://github.com/opencontainers/image-spec/blob/master/annotations.md
+LABEL org.opencontainers.image.title="wscat"
+LABEL org.opencontainers.image.description="WebSocket cat"
+LABEL org.opencontainers.image.authors="Emmanuel Frecon <efrecon+github@gmail.com>"
+LABEL org.opencontainers.image.url="https://github.com/YanziNetworks/wscat"
+LABEL org.opencontainers.image.documentation="https://github.com/YanziNetworks/wscat/README.md"
+LABEL org.opencontainers.image.source="https://github.com/YanziNetworks/wscat"
+LABEL org.opencontainers.image.version="$VERSION"
+LABEL org.opencontainers.image.created="$BUILD_DATE"
+LABEL org.opencontainers.image.vendor="Yanzi Networks AB"
+LABEL org.opencontainers.image.licenses="MIT"
